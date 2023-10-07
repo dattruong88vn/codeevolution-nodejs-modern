@@ -1,8 +1,9 @@
-const superhero = require("./super-hero");
+const SuperHero = require("./super-hero");
 
-console.log(superhero.get());
-superhero.set("Superman");
-console.log(superhero.get());
+const batman = new SuperHero("batman");
+console.log(batman.get());
+batman.set("Bruce Wayne");
+console.log(batman.get());
 
-const newSuperHero = require("./super-hero");
-console.log(newSuperHero.get());
+const superman = new SuperHero("superman");
+console.log(superman.get());
