@@ -1,8 +1,6 @@
 #!/usr/bin/env node
-const yargs = require("yargs");
-const { argv } = yargs;
 
-console.log(argv.pokemon);
+const inquirer = require("inquirer");
 
 async function fetchMoves(pokemonName) {
   const response = await fetch(
@@ -12,4 +10,9 @@ async function fetchMoves(pokemonName) {
   console.log(data.moves.slice(0, 5).map((item) => ({ name: item.move.name })));
 }
 
-fetchMoves(argv.pokemon);
+const promt = inquirer.createPromptModule();
+promt([
+  { type: "input", name: "pokemon", message: "Enter pokemon name:" },
+]).then((answer) => {
+  fetchMoves(answer.pokemon);
+});
