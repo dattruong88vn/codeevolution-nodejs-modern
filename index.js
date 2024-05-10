@@ -2,7 +2,14 @@ const http = require("http");
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Hello world, Thanh Dat is here.");
+  res.end(
+    JSON.stringify({
+      data: {
+        name: "Thanh Dat",
+        ip: req.headers["x-forwarded-for"] || req.socket.remoteAddress || null,
+      },
+    })
+  );
 });
 
 const PORT = process.env.PORT || 3000;
